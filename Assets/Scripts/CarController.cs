@@ -1,47 +1,134 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using System;
+using System.Collections.Generic;
 
 public class CarController : MonoBehaviour
 {
-    bool isRunning = false;
+    public enum ControlMode
+    {
+        Keyboard,
+        Buttons
+    };
 
-    // Rigidbody of the player.
-    private Rigidbody rb;
+    public enum Axel
+    {
+        Front,
+        Rear
+    }
 
-    // Movement along X and Y axes.
-    private float movementX;
-    private float movementY;
+    [Serializable]
+    public struct Wheel
+    {
+        public GameObject wheelModel;
+        public WheelCollider wheelCollider;
+        public Axel axel;
+    }
 
-    // Speed at which the player moves.
-    public float speed = 0;
+    public ControlMode control;
 
-    
+    public float maxAcceleration = 30.0f;
+    public float brakeAcceleration = 50.0f;
+
+    public float turnSensitivity = 1.0f;
+    public float maxSteerAngle = 30.0f;
+
+    public Vector3 _centerOfMass;
+
+    public List<Wheel> wheels;
+
+    float moveInput;
+    float steerInput;
+
+    private Rigidbody carRb;
 
 
     void Start()
     {
-        // Get and store the Rigidbody component attached to the player.
-        rb = GetComponent<Rigidbody>();
+        carRb = GetComponent<Rigidbody>();
+        carRb.centerOfMass = _centerOfMass;
     }
 
-    // This function is called when a move input is detected.
-    void OnMove(InputValue movementValue)
+    void Update()
     {
-        // Convert the input value into a Vector2 for movement.
-        Vector2 movementVector = movementValue.Get<Vector2>();
-
-        // Store the X and Y components of the movement.
-        movementX = movementVector.x;
-        movementY = movementVector.y;
+        GetInputs();
+        AnimateWheels();
     }
 
-    // FixedUpdate is called once per fixed frame-rate frame.
-    private void FixedUpdate()
+    void LateUpdate()
     {
-        // Create a 3D movement vector using the X and Y inputs.
-        Vector3 movement = new(movementX, 0.0f, movementY);
+        Move();
+        Steer();
+        Brake();
+    }
 
-        // Apply force to the Rigidbody to move the player.
-        rb.AddForce(movement * speed);
+    public void MoveInput(float input)
+    {
+        moveInput = input;
+    }
+
+    public void SteerInput(float input)
+    {
+        steerInput = input;
+    }
+
+    void GetInputs()
+    {
+        if (control == ControlMode.Keyboard)
+        {
+            moveInput = Input.GetAxis("Vertical");
+            steerInput = Input.GetAxis("Horizontal");
+        }
+    }
+
+    void Move()
+    {
+        foreach (var wheel in wheels)
+        {
+            Debug.Log(wheel);
+            Debug.Log(wheel.wheelCollider);
+            wheel.wheelCollider.motorTorque = moveInput * 600 * maxAcceleration * Time.deltaTime;
+        }
+    }
+
+    void Steer()
+    {
+        foreach (var wheel in wheels)
+        {
+            if (wheel.axel == Axel.Front)
+            {
+                var _steerAngle = steerInput * turnSensitivity * maxSteerAngle;
+                wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, _steerAngle, 0.6f);
+            }
+        }
+    }
+
+    void Brake()
+    {
+        if (Input.GetKey(KeyCode.Space) || moveInput == 0)
+        {
+            foreach (var wheel in wheels)
+            {
+                wheel.wheelCollider.brakeTorque = 300 * brakeAcceleration * Time.deltaTime;
+            }
+        }
+        else
+        {
+            foreach (var wheel in wheels)
+            {
+                wheel.wheelCollider.brakeTorque = 0;
+            }
+        }
+    }
+
+    void AnimateWheels()
+    {
+        foreach (var wheel in wheels)
+        {
+            Quaternion rot;
+            Vector3 pos;
+            wheel.wheelCollider.GetWorldPose(out pos, out rot);
+            wheel.wheelModel.transform.position = pos;
+            wheel.wheelModel.transform.rotation = rot;
+        }
     }
 }
