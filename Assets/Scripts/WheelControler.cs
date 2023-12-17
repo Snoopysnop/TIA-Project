@@ -63,13 +63,15 @@ public class WheelControler : MonoBehaviour
         Quaternion rotation;
 
         col.GetWorldPose(out position, out rotation);
-
+        
         trans.position = position;
+        
+        rotation *= Quaternion.Euler(0, -90, 0);
         trans.rotation = rotation;
     }
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
