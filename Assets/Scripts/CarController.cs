@@ -46,12 +46,14 @@ public class CarController : MonoBehaviour
     {
         carRb = GetComponent<Rigidbody>();
         carRb.centerOfMass = _centerOfMass;
+        Debug.Log("-----  TEST  -----");
     }
 
     void Update()
     {
         GetInputs();
         AnimateWheels();
+        Debug.Log("-----  TEST2  -----");
     }
 
     void LateUpdate()
@@ -84,8 +86,6 @@ public class CarController : MonoBehaviour
     {
         foreach (var wheel in wheels)
         {
-            Debug.Log(wheel);
-            Debug.Log(wheel.wheelCollider);
             wheel.wheelCollider.motorTorque = moveInput * 600 * maxAcceleration * Time.deltaTime;
         }
     }
@@ -129,6 +129,17 @@ public class CarController : MonoBehaviour
             wheel.wheelCollider.GetWorldPose(out pos, out rot);
             wheel.wheelModel.transform.position = pos;
             wheel.wheelModel.transform.rotation = rot;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.gameObject.name);
+        if (other.gameObject.name == "Arrival")
+        {
+            other.gameObject.SetActive(false);
+            GameObject.Find("Controls").SetActive(false);
+            GameObject.Find("Win Menu").SetActive(true);
         }
     }
 }

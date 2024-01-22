@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WheelControler : MonoBehaviour
 {
-
     [SerializeField] WheelCollider rearRight;
     [SerializeField] WheelCollider rearLeft;
     [SerializeField] WheelCollider frontRight;
@@ -15,38 +14,30 @@ public class WheelControler : MonoBehaviour
     [SerializeField] Transform frontRightTransform;
     [SerializeField] Transform frontLeftTransform;
 
-    public float acceleration = 500f;
+    public float acceleration = 400f;
     public float breakingForce = 300f;
     public float maxTurnAngle = 15f;
-
 
     private float currentAcceleration = 0f;
     private float currentBreakForce = 0f;
     private float currentTurnAngle = 0f;
 
+    private int startOrStop = 0;
+    private int leftOrRight = 0;
 
     private void FixedUpdate()
     {
-        
-        currentAcceleration = acceleration * Input.GetAxis("Vertical");
-
-
-        if (Input.GetKey(KeyCode.Space))
-            currentBreakForce = breakingForce;
-        else
-            currentBreakForce = 0f;
+        currentAcceleration = acceleration * startOrStop;
 
         frontRight.motorTorque = currentAcceleration;
         frontLeft.motorTorque = currentAcceleration;
-
-
 
         rearRight.brakeTorque = currentBreakForce;
         rearLeft.brakeTorque = currentBreakForce;
         frontRight.brakeTorque = currentBreakForce;
         frontLeft.brakeTorque = currentBreakForce;
 
-        currentTurnAngle = maxTurnAngle * Input.GetAxis("Horizontal");
+        currentTurnAngle = maxTurnAngle * leftOrRight;
         frontLeft.steerAngle = currentTurnAngle;
         frontRight.steerAngle = currentTurnAngle;
 
@@ -63,20 +54,60 @@ public class WheelControler : MonoBehaviour
         Quaternion rotation;
 
         col.GetWorldPose(out position, out rotation);
-        
+
         trans.position = position;
-        
+
         rotation *= Quaternion.Euler(0, -90, 0);
         trans.rotation = rotation;
     }
-    void Start()
-    {
 
+    // Buttons controls
+    public void OnGasPress()
+    {
+        startOrStop = 1;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnGasRelease()
     {
-        
+        startOrStop = 0;
+    }
+    public void OnBrakePress()
+    {
+        currentBreakForce = breakingForce;
+    }
+
+    public void OnBrakeRelease()
+    {
+        currentBreakForce = 0f;
+    }
+
+    public void OnLeftPress()
+    {
+        leftOrRight = -1;
+    }
+
+    public void OnLeftRelease()
+    {
+        leftOrRight = 0;
+    }
+
+    public void OnRightPress()
+    {
+        leftOrRight = 1;
+    }
+
+    public void OnRightRelease()
+    {
+        leftOrRight = 0;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "Arrival")
+        {
+            other.gameObject.SetActive(false);
+            GameObject.Find("Controls Container").transform.Find("Controls").gameObject.SetActive(false);
+            GameObject.Find("Win Menu Container").transform.Find("Win Menu").gameObject.SetActive(true);
+        }
     }
 }

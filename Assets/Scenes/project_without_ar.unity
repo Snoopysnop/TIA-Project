@@ -7052,16 +7052,16 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601468401}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 26, z: 1}
+  m_LocalScale: {x: 0.014677224, y: 0.38160786, z: 0.014677222}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1301313563}
   - {fileID: 1601620003}
   - {fileID: 2143010905}
   - {fileID: 964357027}
-  m_Father: {fileID: 1993119501}
+  m_Father: {fileID: 1432666322}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &620825265
 GameObject:
@@ -7378,6 +7378,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2536002159034070635, guid: ebee340de387f334f9ac44e044abd8fb,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7599,6 +7604,11 @@ PrefabInstance:
     - target: {fileID: 1686021177305034388, guid: ebee340de387f334f9ac44e044abd8fb,
         type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2536002159034070635, guid: ebee340de387f334f9ac44e044abd8fb,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -10354,6 +10364,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2536002159034070635, guid: ebee340de387f334f9ac44e044abd8fb,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11154,8 +11169,8 @@ WheelCollider:
   m_Center: {x: -0.52, y: 0.1335, z: 1.153}
   m_Radius: 0.01
   m_SuspensionSpring:
-    spring: 35000
-    damper: 4500
+    spring: 180000
+    damper: 18000
     targetPosition: 0.5
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0
@@ -14634,8 +14649,8 @@ WheelCollider:
   m_Center: {x: 0.52, y: 0.1335, z: 1.153}
   m_Radius: 0.01
   m_SuspensionSpring:
-    spring: 35000
-    damper: 4500
+    spring: 180000
+    damper: 18000
     targetPosition: 0.5
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0
@@ -16614,6 +16629,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1100235773}
+  - {fileID: 601468402}
   m_Father: {fileID: 1993119501}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!23 &1432666323
@@ -18161,8 +18177,8 @@ WheelCollider:
   m_Center: {x: 0.52, y: 0.1335, z: -0.864}
   m_Radius: 0.01
   m_SuspensionSpring:
-    spring: 35000
-    damper: 4500
+    spring: 180000
+    damper: 18000
     targetPosition: 0.5
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0
@@ -19836,6 +19852,11 @@ PrefabInstance:
     - target: {fileID: 1686021177305034388, guid: ebee340de387f334f9ac44e044abd8fb,
         type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2536002159034070635, guid: ebee340de387f334f9ac44e044abd8fb,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -22330,7 +22351,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993119497}
   serializedVersion: 4
-  m_Mass: 1000
+  m_Mass: 5000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -22364,7 +22385,6 @@ Transform:
   m_Children:
   - {fileID: 1325379004}
   - {fileID: 1432666322}
-  - {fileID: 601468402}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &1993119502
@@ -22387,7 +22407,7 @@ MonoBehaviour:
   rearLeftTransform: {fileID: 1264164294}
   frontRightTransform: {fileID: 46207187}
   frontLeftTransform: {fileID: 1805643633}
-  acceleration: 500
+  acceleration: 400
   breakingForce: 300
   maxTurnAngle: 15
 --- !u!1001 &2001606259
@@ -24109,8 +24129,8 @@ WheelCollider:
   m_Center: {x: -0.52, y: 0.1335, z: -0.864}
   m_Radius: 0.01
   m_SuspensionSpring:
-    spring: 35000
-    damper: 4500
+    spring: 180000
+    damper: 18000
     targetPosition: 0.5
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0

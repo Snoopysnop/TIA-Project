@@ -19,6 +19,15 @@ public class ObserverEventHandler : DefaultObserverEventHandler
 
     protected override void OnTrackingFound()
     {
+        var rigidbody = GetComponentsInChildren<Rigidbody>(true);
+
+        foreach (var component in rigidbody)
+        {
+            if(component.name == "Red Car")
+            {
+                component.useGravity = true;
+            }
+        }
         if (mObserverBehaviour)
         {
             var rendererComponents = VuforiaRuntimeUtilities.GetComponentsInChildrenExcluding<Renderer, DefaultObserverEventHandler>(mObserverBehaviour.gameObject);
