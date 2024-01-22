@@ -106,7 +106,7 @@ public class WheelControler : MonoBehaviour
         if (other.gameObject.name == "Arrival")
         {
             other.gameObject.SetActive(false);
-            GameObject.Find("Controls Container").transform.Find("Controls").gameObject.SetActive(false);
+            GameObject.Find("Car Controls").gameObject.SetActive(false);
             GameObject.Find("Win Menu Container").transform.Find("Win Menu").gameObject.SetActive(true);
         }
     }

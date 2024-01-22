@@ -5,29 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void EasyLevel()
     {
-        
+        SceneManager.LoadScene(2);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void HardLevel()
     {
-        
+        SceneManager.LoadScene(3);
     }
 
-    public void PlayGame()
+    public void HowToPlay()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(1);
     }
 
-    public void RestartGame()
+    public void BackToMenu()
     {
-        GameObject.Find("Win Menu Container").transform.Find("Win Menu").gameObject.SetActive(false);
-        GameObject.Find("Controls Container").transform.Find("Controls").gameObject.SetActive(true);
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(0);
     }
 
     public void QuitGame()
