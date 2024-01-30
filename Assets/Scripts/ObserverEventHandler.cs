@@ -15,19 +15,17 @@ using Vuforia;
 
 public class ObserverEventHandler : DefaultObserverEventHandler
 {
-    int renderedItem = 0;
-
     protected override void OnTrackingFound()
     {
+        GameManager.Manager.IncrementImageTargetCounter();
         var rigidbody = GetComponentsInChildren<Rigidbody>(true);
 
         foreach (var component in rigidbody)
         {
-            if(component.name == "Red Car")
-            {
+            if (component.name == "Red Car")
                 component.useGravity = true;
-            }
         }
+        
         if (mObserverBehaviour)
         {
             var rendererComponents = VuforiaRuntimeUtilities.GetComponentsInChildrenExcluding<Renderer, DefaultObserverEventHandler>(mObserverBehaviour.gameObject);
@@ -45,13 +43,7 @@ public class ObserverEventHandler : DefaultObserverEventHandler
 
             // Enable rendering:
             foreach (var component in rendererComponents)
-            {
-                if (item == renderedItem) component.enabled = true;
-                else component.enabled = false;
-            }
-
-            renderedItem %= 3;
-            renderedItem++;
+                component.enabled = true;
         }
 
         OnTargetFound?.Invoke();

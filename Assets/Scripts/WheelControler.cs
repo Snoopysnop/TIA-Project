@@ -108,6 +108,7 @@ public class WheelControler : MonoBehaviour
             other.gameObject.SetActive(false);
             GameObject.Find("Car Controls").gameObject.SetActive(false);
             GameObject.Find("Win Menu Container").transform.Find("Win Menu").gameObject.SetActive(true);
+            GameManager.Manager.StopTimer();
         }
     }
 }
