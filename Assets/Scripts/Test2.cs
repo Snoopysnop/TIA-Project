@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Test2 : MonoBehaviour
 {
-    [SerializeField] List<GameObject> listOfObstacles;
+    public List<GameObject> listOfObstacles;
 
-    public void addToList(GameObject go) {
+    public void AddToList(GameObject go) {
         listOfObstacles.Add(go);
     }
 
@@ -19,7 +19,7 @@ public class Test2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(listOfObstacles[0] != null)
-            Debug.Log(listOfObstacles[0].position);
+        // if(listOfObstacles != null && listOfObstacles.Count != 0)
+        //    Debug.Log(listOfObstacles[0].transform.position);
     }
 }

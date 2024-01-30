@@ -19,11 +19,8 @@ public class Test : DefaultObserverEventHandler
 
     protected override void OnTrackingFound()
     {
-        var component = GetComponentInChildren<Rigidbody>(true);
-        if (component.name == "Cube")
-        {
-            test2.addToList(component.gameObject);
-        }
+        var myComponent =  transform.GetChild(0);
+        test2.AddToList(myComponent.gameObject);
 
         if (mObserverBehaviour)
         {
