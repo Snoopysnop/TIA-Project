@@ -31,6 +31,7 @@ public class PlaygroundObserverEventHandler : DefaultObserverEventHandler
     protected override void OnTrackingFound()
     {
         GameManager.Manager.IncrementImageTargetCounter();
+
         var rigidbody = GetComponentsInChildren<Rigidbody>(true);
 
         foreach (var component in rigidbody)
@@ -63,6 +64,8 @@ public class PlaygroundObserverEventHandler : DefaultObserverEventHandler
 
     protected override void OnTrackingLost()
     {
+        GameManager.Manager.DecrementImageTargetCounter();
+
         if (mObserverBehaviour)
         {
             var rendererComponents = VuforiaRuntimeUtilities.GetComponentsInChildrenExcluding<Renderer, DefaultObserverEventHandler>(mObserverBehaviour.gameObject);

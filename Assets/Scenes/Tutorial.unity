@@ -6395,10 +6395,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerStarted: 0
-  timerText: {fileID: 0}
+  timerText: {fileID: 69584297}
   currentTime: 0
   imageTargetCounter: 0
-  imageTargetText: {fileID: 0}
+  imageTargetText: {fileID: 207736475}
 --- !u!1001 &415538989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7051,6 +7051,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rocks
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534214416398909331, guid: a23a156465ffbe64f81fa1c8df8791c6,
+        type: 3}
+      propertyPath: m_TagString
+      value: ImageTarget
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11305,6 +11310,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tree
+      objectReference: {fileID: 0}
+    - target: {fileID: 3705428294097725475, guid: f3e72fb279e4fb34bae04d3b9ecc32a3,
+        type: 3}
+      propertyPath: m_TagString
+      value: ImageTarget
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20243,7 +20253,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 415504033}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: StartTimer
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -30961,7 +30971,7 @@ GameObject:
   - component: {fileID: 2011813767}
   m_Layer: 0
   m_Name: Scene Image Target
-  m_TagString: Untagged
+  m_TagString: ImageTarget
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -19,6 +19,8 @@ public class ObstacleObserverEventHandler : DefaultObserverEventHandler
 
     protected override void OnTrackingFound()
     {
+        GameManager.Manager.IncrementImageTargetCounter();
+
         var obstacle = transform.GetChild(0);
         obstacleHandler.AddToList(obstacle.gameObject);
 
@@ -46,6 +48,8 @@ public class ObstacleObserverEventHandler : DefaultObserverEventHandler
 
     protected override void OnTrackingLost()
     {
+        GameManager.Manager.DecrementImageTargetCounter();
+
         var obstacle = transform.GetChild(0);
         obstacleHandler.RemoveFromList(obstacle.gameObject);
 
