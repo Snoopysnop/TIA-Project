@@ -7,22 +7,22 @@ public class Menu : MonoBehaviour
 {
     public void EasyLevel()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Easy");
     }
 
     public void HardLevel()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene("Hard");
     }
 
     public void HowToPlay()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void BackToMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Menu");
     }
 
     public void QuitGame()

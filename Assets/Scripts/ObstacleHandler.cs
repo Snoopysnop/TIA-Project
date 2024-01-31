@@ -16,14 +16,17 @@ public class ObstacleHandler : MonoBehaviour
     {
         obstacles.Remove(go);
     }
+    
     public void InstantiateObstacles()
     {
         foreach (GameObject obstacle in obstacles)
         {
             Vector3 position = obstacle.transform.position;
+            Quaternion rotation = obstacle.transform.rotation;
             GameObject newObstacle = Instantiate(obstacle);
             newObstacle.transform.parent = transform;
             newObstacle.transform.position = position;
+            newObstacle.transform.rotation = rotation;
         }
 
         GameObject[] obstaclesImageTargets = GameObject.FindGameObjectsWithTag("Obstacle");
